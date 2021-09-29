@@ -6,7 +6,7 @@
 
     <article> 
 
-        <h1><a href="/post/my-first-post">My First Post</a></h1>
+        <h1><a href="/posts/my-first-post">My First Post</a></h1>
 
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -25,7 +25,7 @@
 
     <article> 
 
-        <h1><a href="/post/my-second-post">My Second Post</a></h1>
+        <h1><a href="/posts/my-second-post">My Second Post</a></h1>
 
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
