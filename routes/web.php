@@ -24,7 +24,8 @@ Route::get('/post/{post}', function ($slug) {
     // make a path variable holding the path of my-first-post or my-second-post
     $path = __DIR__. "/../resources/posts/{$slug}.html";
 
-// If file not exists or redirect him to home page or dd the message
+    // ddd($path);
+    // If file not exists or redirect him to home page or dd the message
     if (!file_exists($path)) {
         // return redirect('/');
         dd('file does not exist');
@@ -37,4 +38,5 @@ Route::get('/post/{post}', function ($slug) {
         // this means when i use $post in my blade to know it as $post of this page
        'post' => $post
     ]);
-});
+    // (url ,post variable) must contain theese letters (like validation)
+})->where('post','[A-z_/-]+');
