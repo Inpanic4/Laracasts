@@ -5,13 +5,13 @@
 <body>
 
     @foreach ($posts as $post)
-        
-    <article>
-        {{ $post }}
-    </article>
+
+        <article>
+            {{ $post }}
+        </article>
     @endforeach
 
-  
+
 
 
 </body>

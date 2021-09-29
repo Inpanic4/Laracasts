@@ -14,20 +14,25 @@ use Illuminate\Support\Facades\File;
 class Post
 //  extends Model
 {
-    public static function all (){
-        return File::files(resource_path("posts/"));
+    public static function all()
+    {
+        $files = File::files(resource_path("posts/"));
 
+        return array_map(function ($file) {
+            return $file->getContents();
+        }, $files);
     }
-    public static function find ($slug) {
+    public static function find($slug)
+    {
         //  make a path variable holding the path of my-first-post or my-second-post
 
 
-    // ddd($path);
-    // If file not exists or redirect him to home page or dd the message
-    if (!file_exists($path =resource_path("posts/{$slug}.html"))) {
-        throw new ModelNotFoundException();
-    }
+        // ddd($path);
+        // If file not exists or redirect him to home page or dd the message
+        if (!file_exists($path = resource_path("posts/{$slug}.html"))) {
+            throw new ModelNotFoundException();
+        }
 
-    return file_get_contents($path);
+        return file_get_contents($path);
     }
 }

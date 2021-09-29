@@ -18,8 +18,10 @@ use function GuzzleHttp\Promise\all;
 
 
 Route::get('/', function () {
+
     return view('posts',[
         'posts' => Post::all()
+       
     ]);
 });
 
