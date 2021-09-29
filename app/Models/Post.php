@@ -1,8 +1,12 @@
 <?php
 
+
 namespace App\Models;
 
+use Illuminate\Support\Facades;
+
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\File;
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
@@ -10,6 +14,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class Post
 //  extends Model
 {
+    public static function all (){
+        return File::files(resource_path("posts/"));
+
+    }
     public static function find ($slug) {
         //  make a path variable holding the path of my-first-post or my-second-post
 

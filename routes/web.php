@@ -3,6 +3,7 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
+use function GuzzleHttp\Promise\all;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('posts');
+    return view('posts',[
+        'posts' => Post::all()
+    ]);
 });
 
 // the url will hold  /post and {post} it means something else in our case the slug
 Route::get('/posts/{post}', function ($slug) {
 
-    $post = Post::find($slug);
+
 
     return view('post',[
         // this means when i use $post in my blade to know it as $post of this page
-       'post' => $post
+       'post' => Post::find($slug)
+
     ]);
     // (url ,post variable) must contain theese letters (like validation)
 })->where('post','[A-z_/-]+');
