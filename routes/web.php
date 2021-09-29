@@ -18,11 +18,23 @@ Route::get('/', function () {
     return view('posts');
 });
 
-
+// the url will hold  /post and {post} it means something else in our case the slug
 Route::get('/post/{post}', function ($slug) {
-    return $slug;
-    // $post = file_get_contents(__DIR__. '/../resources/posts/my-first-post.html');
-    // return view('post',[
-    //    'post' => $post
-    // ]);
+
+    // make a path variable holding the path of my-first-post or my-second-post
+    $path = __DIR__. "/../resources/posts/{$slug}.html";
+
+// If file not exists or redirect him to home page or dd the message
+    if (!file_exists($path)) {
+        // return redirect('/');
+        dd('file does not exist');
+    }
+
+    $post = file_get_contents($path);
+
+
+    return view('post',[
+        // this means when i use $post in my blade to know it as $post of this page
+       'post' => $post
+    ]);
 });
