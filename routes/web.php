@@ -34,11 +34,11 @@ Route::get('/posts/{post}', function ($slug) {
 
     return view('post', [
         // this means when i use $post in my blade to know it as $post of this page
-        'post' => Post::find($slug)
+        'post' => Post::findOrFail($slug)
 
     ]);
     // (url ,post variable) must contain theese letters (like validation)
-})->where('post', '[A-z_/-]+');
+});
 // dd('file does not exist');
 
   // return redirect('/');
