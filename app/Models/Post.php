@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\File;
 class Post
 //  extends Model
 {
+    public $title;
+    public $body;
+
+
+    public function __construct($title,$body)
+    {
+        $this->title = $title;
+        $this ->body = $body;
+    }
+   
     public static function all()
     {
         $files = File::files(resource_path("posts/"));
