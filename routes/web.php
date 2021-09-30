@@ -27,14 +27,15 @@ Route::get('/', function () {
     ]);
 });
 
-// the url will hold  /post and {post} it means something else in our case the slug
-Route::get('/posts/{post}', function ($slug) {
+// the url will hold  /post and {post:slug} it means something else in our case the slug
+// Route::get('/posts/{post}', function (Post $post) {it will find the post with the id by default
+Route::get('/posts/{post:slug}', function (Post $post) {
 
 
 
     return view('post', [
         // this means when i use $post in my blade to know it as $post of this page
-        'post' => Post::findOrFail($slug)
+        'post' => $post
 
     ]);
     // (url ,post variable) must contain theese letters (like validation)

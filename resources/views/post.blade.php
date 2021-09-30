@@ -5,11 +5,11 @@
 <body>
 
     <article>
-
+        <a href="#">{{$post->category->name  }}</a>
         <h1>{{ $post->title }}</h1>
         <p>
 
-            {{ $post->body }}
+            {!! $post->body !!}
         </p>
 
 
