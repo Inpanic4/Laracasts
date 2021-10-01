@@ -1,13 +1,13 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 
-use function GuzzleHttp\Promise\all;
 
-use Illuminate\Support\Facades\File;
+
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +21,13 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 
+
 Route::get('/', function () {
+    
     return view('posts', [
         // Episode 26 
-        'posts' => Post::all()
-
+       'posts' => Post::latest()->get()
+       
     ]);
 });
 
@@ -49,6 +51,15 @@ Route::get('/posts/{post:slug}', function (Post $post) {
     return view('posts', [
         //$category->posts because we wanna grab all posts associated with that category
         'posts' => $category->posts
+
+    ]);
+});
+
+ Route::get('authors/{author:username}', function (User $author) {
+
+    return view('posts', [
+        //$category->posts because we wanna grab all posts associated with that category
+        'posts' => $author->posts
 
     ]);
 });
