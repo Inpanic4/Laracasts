@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 
 use function GuzzleHttp\Promise\all;
@@ -22,6 +23,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts', [
+        // Episode 26 
         'posts' => Post::all()
 
     ]);
@@ -43,3 +45,10 @@ Route::get('/posts/{post:slug}', function (Post $post) {
 // dd('file does not exist');
 
   // return redirect('/');
+  Route::get('categories/{category:slug}', function (Category $category) {
+    return view('posts', [
+        //$category->posts because we wanna grab all posts associated with that category
+        'posts' => $category->posts
+
+    ]);
+});
