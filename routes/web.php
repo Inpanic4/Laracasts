@@ -26,10 +26,10 @@ Route::get('/', function () {
     
     return view('posts', [
         // Episode 26 
-       'posts' => Post::latest()->get()
-       
+       'posts' => Post::latest()->get(),
+       'categories' => Category::all()
     ]);
-});
+})->name('home');
 
 // the url will hold  /post and {post:slug} it means something else in our case the slug
 // Route::get('/posts/{post}', function (Post $post) {it will find the post with the id by default
@@ -50,16 +50,19 @@ Route::get('/posts/{post:slug}', function (Post $post) {
   Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
         //$category->posts because we wanna grab all posts associated with that category
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'currentCategory' =>$category,
+        'categories' => Category::all()
 
     ]);
-});
+})->name('category');
 
  Route::get('authors/{author:username}', function (User $author) {
 
     return view('posts', [
         //$category->posts because we wanna grab all posts associated with that category
-        'posts' => $author->posts
+        'posts' => $author->posts,
+        'categories' => Category::all()
 
     ]);
 });
