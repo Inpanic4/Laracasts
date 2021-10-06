@@ -30,11 +30,11 @@
                     </span>
                 </div>
             </header>
+{{-- space-y-4 adds the nececcary margin in every child ( we did it to split the paragraphs) --}}
+            <div class="text-sm mt-2 space-y-4">
 
-            <div class="text-sm mt-2">
-                <p>
-                    {{ $post->excerpt }}
-                </p>
+                {!! $post->excerpt !!}
+
 
 
             </div>

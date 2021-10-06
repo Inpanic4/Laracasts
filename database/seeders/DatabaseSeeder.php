@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         ]);
         // Create a category with name Work Category
         $category = Category::factory() ->create([
-            'name' =>'Work Category'
+            'name' =>'Work'
         ]);
 
         // Create 5 posts with user id be John Doe's id
@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         Post::factory(5)->create([
             'category_id' =>$category->id
         ]);
+        Category::factory(10)->create();
     }
 }

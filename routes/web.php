@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\User;
 
@@ -22,28 +23,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    
-    return view('posts', [
-        // Episode 26 
-       'posts' => Post::latest()->get(),
-       'categories' => Category::all()
-    ]);
-})->name('home');
-
+Route::get('/',[PostController::class,'index'])->name('home');
 // the url will hold  /post and {post:slug} it means something else in our case the slug
-// Route::get('/posts/{post}', function (Post $post) {it will find the post with the id by default
-Route::get('/posts/{post:slug}', function (Post $post) {
-
-
-
-    return view('post', [
-        // this means when i use $post in my blade to know it as $post of this page
-        'post' => $post
-
-    ]);
-    // (url ,post variable) must contain theese letters (like validation)
-});
+Route::get('/posts/{post:slug}',[PostController::class,'show']); 
 // dd('file does not exist');
 
   // return redirect('/');
@@ -65,4 +47,8 @@ Route::get('/posts/{post:slug}', function (Post $post) {
         'categories' => Category::all()
 
     ]);
+});
+
+Route::get('/test', function () {
+    return view('test');
 });
