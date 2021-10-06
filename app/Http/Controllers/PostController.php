@@ -11,16 +11,17 @@ class PostController extends Controller
     public function index()
     {
 
-        return view('posts',[
-            'posts' => Post::latest()->filter(request(['search']))->get(),
-            'categories' => Category::all()
+        return view('posts.index',[
+            // One action handling all posts OR filter posts (search for a post)
+            // Post:latest() OrdersBy all Posts with the column you provide in descending order with the default column will be created_at.
+            'posts' => Post::latest()->filter(request(['search','category']))->get()
+          
         ]);
     }
     
     public function show(Post $post)
     {
-        return view('post', [
-            // this means when i use $post in my blade to know it as $post of this page
+        return view('posts.show', [
             'post' => $post
     
         ]);

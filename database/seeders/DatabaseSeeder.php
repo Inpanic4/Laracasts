@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'name'=>'John Doe'
         ]);
         // Create a category with name Work Category
-        $category = Category::factory() ->create([
+        $category = Category::factory()->create([
             'name' =>'Work'
         ]);
 

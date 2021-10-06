@@ -24,27 +24,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[PostController::class,'index'])->name('home');
-// the url will hold  /post and {post:slug} it means something else in our case the slug
 Route::get('/posts/{post:slug}',[PostController::class,'show']); 
 // dd('file does not exist');
 
-  // return redirect('/');
-  Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        //$category->posts because we wanna grab all posts associated with that category
-        'posts' => $category->posts,
-        'currentCategory' =>$category,
-        'categories' => Category::all()
 
-    ]);
-})->name('category');
 
  Route::get('authors/{author:username}', function (User $author) {
 
-    return view('posts', [
+    return view('posts.index', [
         //$category->posts because we wanna grab all posts associated with that category
         'posts' => $author->posts,
-        'categories' => Category::all()
 
     ]);
 });
