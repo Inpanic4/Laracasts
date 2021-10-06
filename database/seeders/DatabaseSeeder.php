@@ -21,19 +21,48 @@ class DatabaseSeeder extends Seeder
             'name'=>'John Doe'
         ]);
         // Create a category with name Work Category
-        $category = Category::factory()->create([
+        $work = Category::factory()->create([
             'name' =>'Work'
+        ]);
+        $hobbies = Category::factory()->create([
+            'name' =>'Hobbies'
+        ]);
+        $police = Category::factory()->create([
+            'name' =>'Police'
+        ]);
+        $hooligan = Category::factory()->create([
+            'name' =>'Hooligans'
+        ]);
+        $social = Category::factory()->create([
+            'name' =>'Social'
+        ]);
+         Category::factory()->create([
+            'name' =>'Empty'
         ]);
 
         // Create 5 posts with user id be John Doe's id
         Post::factory(5)->create([
+            'category_id' =>$work->id,
             'user_id' =>$user->id
         ]);
-        // Create 5 posts with category_id be the same with
+        // Create 20 posts with category_id be the same with
         //  Work category's ID Which is $category variable
-        Post::factory(5)->create([
-            'category_id' =>$category->id
+        Post::factory(20)->create([
+            'category_id' =>$work->id
         ]);
-        Category::factory(10)->create();
+        Post::factory(20)->create([
+            'category_id' =>$hobbies->id
+        ]);
+        Post::factory(20)->create([
+            'category_id' =>$police->id
+        ]);
+        Post::factory(20)->create([
+            'category_id' =>$hooligan->id
+        ]);
+        Post::factory(20)->create([
+            'category_id' =>$social->id
+        ]);
+     
+
     }
 }

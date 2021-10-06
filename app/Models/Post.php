@@ -17,11 +17,15 @@ class Post extends Model
     public function scopeFilter($query, array $filters)
     {
         // if($filters['search'] ?? false)
+        //USERS TYPING FILTER
         $query->when($filters['search'] ?? false, fn ($query, $search) =>
-        $query
-            ->where('title', 'like', '%' . $search . '%')
-            ->orWhere('body', 'like', '%' . $search . '%'));
+        $query->where(fn($query) =>
+        $query->where('title', 'like', '%' . $search . '%')
+            ->orWhere('body', 'like', '%' . $search . '%')
+    )
+        );
 
+            // CATEGORIES FILTER
             $query->when($filters['category'] ?? false, fn ($query, $category) =>
             // posts give the ones that have a category 
    
@@ -29,6 +33,13 @@ class Post extends Model
              // specificly  where the category slug matches with what the user requested at the browser
             $query->where('slug', $category)));
 
+
+        
+                // AUTHORS FILTER
+            $query->when($filters['author'] ?? false, fn ($query, $author) =>
+            $query->whereHas('author', fn($query) =>
+            $query->where('username', $author)));
+             
     }
 
     public function category()

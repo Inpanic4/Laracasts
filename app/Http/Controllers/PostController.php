@@ -10,12 +10,13 @@ class PostController extends Controller
 {
     public function index()
     {
+        // Look the data as json format
+        // return Post::latest()->filter(request(['search','category','author']))->paginate();
 
         return view('posts.index',[
             // One action handling all posts OR filter posts (search for a post)
             // Post:latest() OrdersBy all Posts with the column you provide in descending order with the default column will be created_at.
-            'posts' => Post::latest()->filter(request(['search','category']))->get()
-          
+            'posts' => Post::latest()->filter(request(['search','category','author']))->paginate(9)->withQueryString() //Episode 44
         ]);
     }
     
