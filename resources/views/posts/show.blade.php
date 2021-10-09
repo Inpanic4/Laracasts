@@ -1,6 +1,5 @@
 <x-layout>
 
-<body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
 
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
@@ -37,7 +36,7 @@
 
                             Back to Posts
                         </a>
-
+                      
                         <div class="space-x-2">
                             <x-category-button :category="$post->category" />
                        
@@ -50,10 +49,15 @@
 
                    <div class="space-y-4 lg:text-lg leading-loose">{!! $post->body  !!}</div>
                 </div>
+                <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                  <x-post-comment/>
+                  <x-post-comment/>
+                </section>
             </article>
         </main>
 
-        
+
     </section>
-</body>
 </x-layout>
+
+
