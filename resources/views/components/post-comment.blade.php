@@ -1,19 +1,23 @@
-<article class="flex bg-gray-200 p-6 border border-gray-300 rounded-2xl space-x-4">
+@props(['comment'])
+<x-panel class="bg-gray-100">
+<article class="flex space-x-4">
     <div class="flex-shrink-0">
-        <img src="https://i.pravatar.cc/100" alt="" width="60" height="60" class="rounded-xl">
+        <img src="https://i.pravatar.cc/60?u={{$comment->id}}" alt="" width="60" height="60" class="rounded-xl">
     </div>
 
     <div>
         <header class="mb-4">
-            <h3 class="font-bold">John Doe</h3>
+            <h3 class="font-bold">{{$comment->author->username}}</h3>
             <p class="text-xs">
                 Posted 
-                <time> 8 months ago </time>
+                <time> {{$comment->created_at}}</time>
                    </p>
 
         </header>
 
-        <p>Comment lorem isum a just simple and askdjasl tetetatl text that it is a 
-            simple comment about the post</p>
+        <p>
+            {{$comment->body}}
+        </p>
     </div>
 </article>
+</x-panel>
