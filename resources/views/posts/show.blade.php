@@ -50,6 +50,9 @@
                    <div class="space-y-4 lg:text-lg leading-loose">{!! $post->body  !!}</div>
                 </div>
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                    @auth
+                        
+                   
                     <x-panel>
                     <form method="POST" action="/posts/{{$post->slug}}/comments" >
                         @csrf
@@ -59,7 +62,16 @@
                             <h2 class="ml-4">Leave a Comment</h2>
                         </header>
                         <div class="mt-4">
-                            <textarea name="body" class="w-full focus:outline-none focus:ring" rows="5" placeholder="Say Something!"></textarea>
+                            <textarea name="body" 
+                            class="w-full focus:outline-none focus:ring"
+                             rows="5" 
+                             placeholder="Say Something!" 
+                             required></textarea>
+
+                             @error('body')
+                             <span class="text-xs text-red-500">{{$message}}</span>
+                                 
+                             @enderror
                         </div>
                         <div  class="flex justify-end mt-5 border-t border-gray-200 pt-6">
                             <button type="submit" class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600">Post</button>
@@ -68,6 +80,7 @@
 
                     </form>
                 </x-panel>
+                @endauth
                     @foreach ($post->comments as $comment)
                     <x-post-comment :comment="$comment" />
                     @endforeach
